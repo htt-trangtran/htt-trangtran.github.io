@@ -146,7 +146,7 @@ input, select, textarea {
 
 		a:link {
 			color: #f37f58;
-			border-bottom-color: rgba(255, 255, 255, 0);
+			border-bottom-color: #58b2f3;
 		}
 
 		a:hover {
