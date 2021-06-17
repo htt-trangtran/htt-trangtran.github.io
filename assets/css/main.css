@@ -144,6 +144,11 @@ input, select, textarea {
 		border-bottom: dotted 1px #62676c;
 	}
 
+		a:link {
+			color: #f37f58;
+			border-bottom-color: rgba(255, 255, 255, 0);
+		}
+
 		a:hover {
 			color: #f35858;
 			border-bottom-color: rgba(255, 255, 255, 0);
