@@ -146,12 +146,14 @@ input, select, textarea {
 
 		a:link {
 			color: #f37f58;
+			border-bottom: 1px solid;
 			border-bottom-color: #58b2f3;
 		}
 
 		a:hover {
 			color: #f35858;
-			border-bottom-color: rgba(255, 255, 255, 0);
+			border-bottom: 5px solid;
+			border-bottom-color: #58b2f3;
 		}
 
 	strong, b {
