@@ -151,19 +151,19 @@ input, select, textarea {
 		}
 
 		a:visited {
-			color: #f3ca58;
+			color: #f38758;
 			border-bottom: 1px solid;
-			border-bottom-color: #f3ca58;
+			border-bottom-color: #f38758;
 		}
 		a:hover {
-			color: #f3a058;
+			color: #d92771;
 			border-bottom: 1px solid;
-			border-bottom-color: #f3a058;
+			border-bottom-color: #d92771;
 		}
 
 	strong, b {
 		font-weight: 400;
-		color: #a12d2d;
+		color: #d92727;
 	}
 
 	em, i {
