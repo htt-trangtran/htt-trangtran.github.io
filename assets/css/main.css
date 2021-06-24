@@ -1768,6 +1768,7 @@ input, select, textarea {
 		display: inline-block;
 		outline: 0;
 		border: 0;
+		border-bottom: 0;
 	}
 
 		.image img {
