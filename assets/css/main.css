@@ -143,6 +143,7 @@ input, select, textarea {
 		text-decoration: none;
 		
 		
+		
 	}
 		a:link {
 			color: #f35858;
@@ -1768,6 +1769,7 @@ input, select, textarea {
 		display: inline-block;
 		outline: 0;
 		border: 0;
+		vertical-align: middle;
 	}
 
 		.image img {
@@ -1812,7 +1814,7 @@ input, select, textarea {
 			margin: 0 0 3em 0;
 		}
 	a.image:hover {
-		opacity: 0.8;
+		opacity: 1;
 		border-bottom: 0;
 	}
 
