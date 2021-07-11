@@ -141,30 +141,17 @@ input, select, textarea {
 		transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 		color: inherit;
 		text-decoration: none;
-		
-		
-		
+		border-bottom: dotted 1px #62676c;
 	}
-		a:link {
-			color: #f35858;
-			border-bottom: 1px solid;
-			border-bottom-color: #f35858;
-		}
 
-		a:visited {
-			color: #f38758;
-			border-bottom: 1px solid;
-			border-bottom-color: #f38758;
-		}
 		a:hover {
-			color: #d92771;
-			border-bottom: 1px solid;
-			border-bottom-color: #d92771;
+			color: #f35858;
+			border-bottom-color: rgba(255, 255, 255, 0);
 		}
 
 	strong, b {
 		font-weight: 400;
-		color: #d92727;
+		color: #42474c;
 	}
 
 	em, i {
@@ -1769,7 +1756,6 @@ input, select, textarea {
 		display: inline-block;
 		outline: 0;
 		border: 0;
-		vertical-align: middle;
 	}
 
 		.image img {
@@ -1803,19 +1789,8 @@ input, select, textarea {
 				width: auto;
 			}
 
-		.image.rounded {
-			width: 100%;
-			border-radius: 50%; 
-		}
-
-		.image.small {
-			display: block;
-			width: 50%;
-			margin: 0 0 3em 0;
-		}
 	a.image:hover {
-		opacity: 1;
-		border-bottom: 0;
+		opacity: 0.85;
 	}
 
 /* List */
