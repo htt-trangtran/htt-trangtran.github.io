@@ -1823,6 +1823,11 @@ input, select, textarea {
 			width: 40%;
 			margin: 1em 0 1em 0;
 		}
+		.image.small20 {
+			display: block;
+			width: 20%;
+			margin: 1em 0 1em 0;
+		}
 		.image.small50inline {
 			display: inline;
 			width: 50%;
@@ -1836,6 +1841,11 @@ input, select, textarea {
 		.image.small40inline {
 			display: inline;
 			width: 40%;
+			margin: 1em 0 1em 0;
+		}
+		.image.small20inline {
+			display: inline;
+			width: 20%;
 			margin: 1em 0 1em 0;
 		}
 	a.image:hover {
