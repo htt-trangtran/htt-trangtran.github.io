@@ -1785,7 +1785,7 @@ input, select, textarea {
 		.image.featured {
 			display: block;
 			width: 100%;
-			margin: 0 0 3em 0;
+			margin: 0 0 1em 0;
 		}
 
 		.image.left {
@@ -1795,7 +1795,7 @@ input, select, textarea {
 
 		.image.centered {
 			display: block;
-			margin: 0 0 3em 0;
+			margin: 1em 0 1em 0;
 		}
 
 			.image.centered img {
@@ -1808,10 +1808,35 @@ input, select, textarea {
 			border-radius: 50%; 
 		}
 
-		.image.small {
+		.image.small50 {
 			display: block;
 			width: 50%;
-			margin: 0 0 3em 0;
+			margin: 1em 0 1em 0;
+		}
+		.image.small66 {
+			display: block;
+			width: 66%;
+			margin: 1em 0 1em 0;
+		}
+		.image.small40 {
+			display: block;
+			width: 40%;
+			margin: 1em 0 1em 0;
+		}
+		.image.small50inline {
+			display: inline;
+			width: 50%;
+			margin: 1em 0 1em 0;
+		}
+		.image.small66inline {
+			display: inline;
+			width: 66%;
+			margin: 1em 0 1em 0;
+		}
+		.image.small40inline {
+			display: inline;
+			width: 40%;
+			margin: 1em 0 1em 0;
 		}
 	a.image:hover {
 		opacity: 1;
