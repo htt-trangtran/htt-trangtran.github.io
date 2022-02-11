@@ -2483,9 +2483,9 @@ input, select, textarea {
 				padding: 2em 0 2em 0;
 			}
 
-			.homepage #header-wrapper {
-				padding: 8em 0 4em 0;
-			}
+			/*.homepage #header-wrapper {*/
+			/*	padding: 8em 0 4em 0;*/
+			/*}*/
 
 			#promo-wrapper {
 				padding: 5em 0 5em 0;
@@ -2528,9 +2528,9 @@ input, select, textarea {
 				padding: 5em 0 1em 0;
 			}
 
-			.homepage #header-wrapper {
-				padding: 5em 0 4em 0;
-			}
+			/*.homepage #header-wrapper {*/
+			/*	padding: 5em 0 4em 0;*/
+			/*}*/
 
 			#promo-wrapper {
 				padding: 2em;
@@ -2764,9 +2764,9 @@ input, select, textarea {
 				text-align: center;
 			}
 
-			.homepage #header-wrapper {
-				padding: 3em 20px 3em 20px;
-			}
+			/*.homepage #header-wrapper {*/
+			/*	padding: 3em 20px 3em 20px;*/
+			/*}*/
 
 			#promo-wrapper {
 				padding: 20px;
