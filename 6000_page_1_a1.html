@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Word List with Audio - A1 (Page 1)</title>
+  <style>
+    body { font-family: sans-serif; }
+    .nav-btns { margin-bottom: 20px; }
+    .nav-btns button { margin-right: 10px; padding: 8px 16px; font-size: 1em; }
+    .no-data { font-size: 1.2em; color: #666; text-align: center; margin: 40px 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; }
+    th { background: #f0f0f0; }
+    .play-word { cursor: pointer; color: #0074d9; text-decoration: underline; }
+    .def-link { color: #2d7a2d; text-decoration: underline; cursor: pointer; position: relative; }
+    .def-link:hover .preview-box {
+      display: block;
+    }
+    .index-col { text-align: center; width: 50px; }
+  </style>
+</head>
+<body>
+  <div class="nav-btns">
+<button disabled>A1</button><button onclick="window.location.href='6000_page_1_a2.html'">A2</button><button onclick="window.location.href='6000_page_1_b1.html'">B1</button><button onclick="window.location.href='6000_page_1_b2.html'">B2</button><button onclick="window.location.href='6000_page_1_c1.html'">C1</button>
+  </div>
+  <h2>Word List with Pronunciation - A1 (Page 1)</h2>
+  <div class="top-btns" style="margin-bottom: 20px;">
+    <button id="reset-checkboxes">Reset Practice Checkboxes</button>
+    <button id="toggle-hide-learned">Hide words learned</button>
+    <button id="toggle-auto-no">Auto-check No on play: OFF</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="index-col">#</th>
+        <th>Word</th>
+        <th>Need Practice?</th>
+        <th>Part of Speech</th>
+        <th>IPA</th>
+        <th>Vietnamese</th>
+        <th>Definition</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+  <script>
+const data = [["monday", "noun", "\u02c8m\u0259n\u02ccde\u026a", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/m/mon/monda/monday__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/monday", "th\u1ee9 hai"], ["object", "noun", "\u02c8\u0251b\u02a4\u025bkt", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/o/obj/objec/object__us_2_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/object_1", "s\u1ef1 v\u1eadt"], ["lunch", "noun", "l\u0259n\u02a7", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/l/lun/lunch/lunch__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/lunch_1", "b\u1eefa tr\u01b0a"], ["keep", "verb", "kip", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/k/kee/keep_/keep__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/keep_1", "gi\u1eef"], ["movie", "noun", "\u02c8muvi", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/m/mov/movie/movie__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/movie", "b\u1ed9 phim"], ["art", "noun", "\u0251rt", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/a/art/art__/art__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/art_1", "ngh\u1ec7 thu\u1eadt"], ["jacket", "noun", "\u02c8\u02a4\u00e6k\u026at", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/j/jac/jacke/jacket__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/jacket", "\u00e1o kho\u00e1c"], ["card", "noun", "k\u0251rd", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/c/car/card_/card__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/card_1", "th\u1ebb"], ["paper", "noun", "\u02c8pe\u026ap\u0259r", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/p/pap/paper/paper__us_3.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/paper_1", "gi\u1ea5y"], ["opposite", "preposition", "\u02c8\u0251p\u0259z\u026at", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/o/opp/oppos/opposite__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/opposite_3", "\u0111\u1ed1i di\u1ec7n"], ["first", "adverb", "f\u0259rst", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/f/fir/first/first__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/first_2", "\u0111\u1ea7u ti\u00ean"], ["first", "determiner", "f\u0259rst", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/f/fir/first/first__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/first_1", "\u0111\u1ea7u ti\u00ean"], ["email", "verb", "i\u02c8me\u026al", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/e/ema/email/email__us_2.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/email_2", "e-mail"], ["today", "adverb", "t\u0259\u02c8de\u026a", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/t/tod/today/today__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/today_1", "h\u00f4m nay"], ["saturday", "noun", "\u02c8s\u00e6\u02cct\u026a\u02ccde\u026a", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/s/sat/satur/saturday__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/saturday", "th\u1ee9 b\u1ea3y"], ["sleep", "verb", "slip", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/s/sle/sleep/sleep__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/sleep_1", "ng\u1ee7"], ["people", "noun", "\u02c8pip\u0259l", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/p/peo/peopl/people__us_4.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/people_1", "m\u1ecdi ng\u01b0\u1eddi"], ["list", "verb", "l\u026ast", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/l/lis/list_/list__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/list_2", "danh s\u00e1ch"], ["january", "noun", "\u02c8\u02a4\u00e6nju\u02cc\u025bri", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/j/jan/janua/january__us_2.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/january", "th\u00e1ng gi\u00eang"], ["both", "pronoun", "bo\u028a\u03b8", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/b/bot/both_/both__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/both", "c\u1ea3 hai"], ["down", "adverb", "da\u028an", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/d/dow/down_/down__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/down_1", "xu\u1ed1ng"], ["climb", "verb", "kla\u026am", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/c/cli/climb/climb__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/climb_1", "leo"], ["welcome", "verb", "\u02c8w\u025blk\u0259m", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/w/wel/welco/welcome__us_2.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/welcome_2", "ch\u00e0o m\u1eebng"], ["upstairs", "adverb", "\u0259p\u02c8st\u025brz", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/u/ups/upsta/upstairs__us_4.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/upstairs_1", "tr\u00ean l\u1ea7u"], ["reason", "noun", "\u02c8riz\u0259n", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/r/rea/reaso/reason__us_4.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/reason_1", "l\u00fd do"]];
+let hideLearned = false;
+let autoNoOnPlay = false; // default OFF
+
+function renderTable() {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  let visibleCount = 0;
+  for (let i = 0; i < data.length; ++i) {
+    const [word, partofspeech, ipa, audio_url, definition_url, vnword] = data[i];
+    const storageKey = "a1_practice_" + encodeURIComponent(word);
+    const saved = localStorage.getItem(storageKey);
+
+    // Filtering logic: hide if "no" and hideLearned is true
+    if (hideLearned && saved === 'no') {
+      continue;
+    }
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="index-col">${i + 1}</td>
+      <td>
+        <span class="play-word" data-audio="audioa1${i}">${word}</span>
+      </td>
+      <td>
+        <label><input type="checkbox" class="practice-checkbox-yes" data-word="${word}"> Yes</label>
+        <label><input type="checkbox" class="practice-checkbox-no" data-word="${word}"> No</label>
+      </td>
+      <td>${partofspeech}</td>
+      <td>${ipa}</td>
+      <td>${vnword}</td>
+      <td>
+        <a class="def-link" href="${definition_url}" target="_blank" title="Open Oxford Learner's Dictionary">Oxford</a>
+      </td>
+    `;
+    // Add audio element only when needed
+    const playWord = row.querySelector('.play-word');
+    playWord.addEventListener('mouseenter', function() {
+      let audio = document.getElementById(this.dataset.audio);
+      if (!audio) {
+        audio = document.createElement('audio');
+        audio.id = this.dataset.audio;
+        audio.src = audio_url;
+        audio.preload = 'none';
+        document.body.appendChild(audio);
+      }
+      audio.currentTime = 0;
+      audio.play();
+      // Auto-check No if enabled
+      if (autoNoOnPlay) {
+        noBox.checked = true;
+        yesBox.checked = false;
+        localStorage.setItem(storageKey, 'no');
+        if (!hideLearned) {
+          renderTable(); // Only refresh if not hiding learned
+        }
+      }
+    });
+    playWord.addEventListener('mouseleave', function() {
+      const audio = document.getElementById(this.dataset.audio);
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+    // Checkbox localStorage logic
+    const yesBox = row.querySelector('.practice-checkbox-yes');
+    const noBox = row.querySelector('.practice-checkbox-no');
+
+    // Restore state
+    if (saved === 'yes') {
+      yesBox.checked = true;
+      noBox.checked = false;
+    } else if (saved === 'no') {
+      yesBox.checked = false;
+      noBox.checked = true;
+    } else {
+      yesBox.checked = false;
+      noBox.checked = false;
+    }
+
+    // When user checks yes/no, update localStorage and uncheck the other
+    yesBox.addEventListener('change', function() {
+      if (yesBox.checked) {
+        noBox.checked = false;
+        localStorage.setItem(storageKey, 'yes');
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+      if (!hideLearned) {
+        renderTable(); // Only refresh if not hiding learned
+      }
+    });
+    noBox.addEventListener('change', function() {
+      if (noBox.checked) {
+        yesBox.checked = false;
+        localStorage.setItem(storageKey, 'no');
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+      if (!hideLearned) {
+        renderTable(); // Only refresh if not hiding learned
+      }
+    });
+    tbody.appendChild(row);
+    visibleCount++;
+  }
+}
+
+renderTable();
+
+document.getElementById('reset-checkboxes').addEventListener('click', function() {
+  if (confirm('Are you sure you want to reset all "Need Practice" checkboxes for this level?')) {
+    document.querySelectorAll('.practice-checkbox-yes, .practice-checkbox-no').forEach(checkbox => {
+      checkbox.checked = false;
+      localStorage.removeItem("a1_practice_" + encodeURIComponent(checkbox.dataset.word));
+    });
+    renderTable();
+  }
+});
+
+document.getElementById('toggle-hide-learned').addEventListener('click', function() {
+  hideLearned = !hideLearned;
+  this.textContent = hideLearned ? "Show all words" : "Hide words learned";
+  renderTable();
+});
+
+document.getElementById('toggle-auto-no').addEventListener('click', function() {
+  autoNoOnPlay = !autoNoOnPlay;
+  this.textContent = "Auto-check No on play: " + (autoNoOnPlay ? "ON" : "OFF");
+});
+  </script>
+</body>
+</html>

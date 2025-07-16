@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Word List with Audio - C1 (Page 1)</title>
+  <style>
+    body { font-family: sans-serif; }
+    .nav-btns { margin-bottom: 20px; }
+    .nav-btns button { margin-right: 10px; padding: 8px 16px; font-size: 1em; }
+    .no-data { font-size: 1.2em; color: #666; text-align: center; margin: 40px 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; }
+    th { background: #f0f0f0; }
+    .play-word { cursor: pointer; color: #0074d9; text-decoration: underline; }
+    .def-link { color: #2d7a2d; text-decoration: underline; cursor: pointer; position: relative; }
+    .def-link:hover .preview-box {
+      display: block;
+    }
+    .index-col { text-align: center; width: 50px; }
+  </style>
+</head>
+<body>
+  <div class="nav-btns">
+<button onclick="window.location.href='6000_page_1_a1.html'">A1</button><button onclick="window.location.href='6000_page_1_a2.html'">A2</button><button onclick="window.location.href='6000_page_1_b1.html'">B1</button><button onclick="window.location.href='6000_page_1_b2.html'">B2</button><button disabled>C1</button>
+  </div>
+  <h2>Word List with Pronunciation - C1 (Page 1)</h2>
+  <div class="top-btns" style="margin-bottom: 20px;">
+    <button id="reset-checkboxes">Reset Practice Checkboxes</button>
+    <button id="toggle-hide-learned">Hide words learned</button>
+    <button id="toggle-auto-no">Auto-check No on play: OFF</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="index-col">#</th>
+        <th>Word</th>
+        <th>Need Practice?</th>
+        <th>Part of Speech</th>
+        <th>IPA</th>
+        <th>Vietnamese</th>
+        <th>Definition</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+  <script>
+const data = [["endorse", "verb", "\u025bn\u02c8d\u0254rs", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/e/end/endor/endorse__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/endorse", "ch\u1ee9ng th\u1ef1c"], ["boundary", "noun", "\u02c8ba\u028and\u0259ri", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/b/bou/bound/boundary__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/boundary", "ranh gi\u1edbi"], ["devastate", "verb", "\u02c8d\u025bv\u0259\u02ccste\u026at", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/d/dev/devas/devastate__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/devastate", "t\u00e0n ph\u00e1"], ["diplomatic", "adjective", "\u02ccd\u026apl\u0259\u02c8m\u00e6t\u026ak", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/d/dip/diplo/diplomatic__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/diplomatic", "ngo\u1ea1i giao"], ["prey", "noun", "pre\u026a", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/p/pre/prey_/prey__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/prey_1", "con m\u1ed3i"], ["mill", "noun", "m\u026al", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/m/mil/mill_/mill__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/mill_1", "nh\u00e0 m\u00e1y"], ["legacy", "noun", "\u02c8l\u025bg\u0259si", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/l/leg/legac/legacy__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/legacy_1", "di s\u1ea3n"], ["consistency", "noun", "k\u0259n\u02c8s\u026ast\u0259nsi", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/x/xco/xcons/xconsistency__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/consistency", "t\u00ednh nh\u1ea5t qu\u00e1n"], ["lethal", "adjective", "\u02c8li\u03b8\u0259l", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/l/let/letha/lethal__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/lethal", "g\u00e2y ch\u1ebft ng\u01b0\u1eddi"], ["cognitive", "adjective", "\u02c8k\u0251gn\u026at\u026av", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/c/cog/cogni/cognitive__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/cognitive", "nh\u1eadn th\u1ee9c"], ["burden", "noun", "\u02c8b\u0259rd\u0259n", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/b/bur/burde/burden__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/burden_1", "g\u00e1nh n\u1eb7ng"], ["subscription", "noun", "s\u0259b\u02c8skr\u026ap\u0283\u0259n", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/s/sub/subsc/subscription__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/subscription", "\u0111\u0103ng k\u00fd"], ["strive", "verb", "stra\u026av", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/s/str/striv/strive__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/strive", "ph\u1ea5n \u0111\u1ea5u"], ["conceive", "verb", "k\u0259n\u02c8siv", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/x/xco/xconc/xconceive__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/conceive", "quan ni\u1ec7m"], ["rehabilitation", "noun", "\u02ccri\u0259\u02ccb\u026al\u0259\u02c8te\u026a\u0283\u0259n", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/r/reh/rehab/rehabilitation__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/rehabilitation", "ph\u1ee5c h\u1ed3i ch\u1ee9c n\u0103ng"], ["discard", "verb", "d\u026a\u02c8sk\u0251rd", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/d/dis/disca/discard__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/discard_1", "lo\u1ea1i b\u1ecf"], ["nonsense", "noun", "\u02c8n\u0251ns\u025bns", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/n/non/nonse/nonsense__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/nonsense", "v\u00f4 ngh\u0129a"], ["benchmark", "noun", "\u02c8b\u025bn\u02a7\u02ccm\u0251rk", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/b/ben/bench/benchmark__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/benchmark_1", "\u0111i\u1ec3m chu\u1ea9n"], ["premier", "adjective", "pr\u025b\u02c8m\u026ar", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/p/pre/premi/premier__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/premier_1", "premier"], ["poll", "noun", "po\u028al", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/p/pol/poll_/poll__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/poll_1", "th\u0103m d\u00f2 \u00fd ki\u1ebfn"], ["well", "noun", "w\u025bl", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/w/wel/well_/well__us_2.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/well_4", "t\u1ed1t"], ["faculty", "noun", "\u02c8f\u00e6k\u0259lti", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/f/fac/facul/faculty__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/faculty", "gi\u1ea3ng vi\u00ean"], ["frustrated", "adjective", "\u02c8fr\u0259\u02ccstre\u026at\u0259d", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/f/fru/frust/frustrated__us_2.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/frustrated", "b\u1ef1c b\u1ed9i"], ["notable", "adjective", "\u02c8no\u028at\u0259b\u0259l", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/n/not/notab/notable__us_1.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/notable_1", "\u0111\u00e1ng ch\u00fa \u00fd"], ["mature", "verb", "m\u0259\u02c8\u02a7\u028ar", "https://www.oxfordlearnersdictionaries.com/media/english/us_pron_ogg/m/mat/matur/mature__us_1_rr.ogg", "https://www.oxfordlearnersdictionaries.com/definition/english/mature_2", "tr\u01b0\u1edfng th\u00e0nh"]];
+let hideLearned = false;
+let autoNoOnPlay = false; // default OFF
+
+function renderTable() {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  let visibleCount = 0;
+  for (let i = 0; i < data.length; ++i) {
+    const [word, partofspeech, ipa, audio_url, definition_url, vnword] = data[i];
+    const storageKey = "c1_practice_" + encodeURIComponent(word);
+    const saved = localStorage.getItem(storageKey);
+
+    // Filtering logic: hide if "no" and hideLearned is true
+    if (hideLearned && saved === 'no') {
+      continue;
+    }
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="index-col">${i + 1}</td>
+      <td>
+        <span class="play-word" data-audio="audioc1${i}">${word}</span>
+      </td>
+      <td>
+        <label><input type="checkbox" class="practice-checkbox-yes" data-word="${word}"> Yes</label>
+        <label><input type="checkbox" class="practice-checkbox-no" data-word="${word}"> No</label>
+      </td>
+      <td>${partofspeech}</td>
+      <td>${ipa}</td>
+      <td>${vnword}</td>
+      <td>
+        <a class="def-link" href="${definition_url}" target="_blank" title="Open Oxford Learner's Dictionary">Oxford</a>
+      </td>
+    `;
+    // Add audio element only when needed
+    const playWord = row.querySelector('.play-word');
+    playWord.addEventListener('mouseenter', function() {
+      let audio = document.getElementById(this.dataset.audio);
+      if (!audio) {
+        audio = document.createElement('audio');
+        audio.id = this.dataset.audio;
+        audio.src = audio_url;
+        audio.preload = 'none';
+        document.body.appendChild(audio);
+      }
+      audio.currentTime = 0;
+      audio.play();
+      // Auto-check No if enabled
+      if (autoNoOnPlay) {
+        noBox.checked = true;
+        yesBox.checked = false;
+        localStorage.setItem(storageKey, 'no');
+        if (!hideLearned) {
+          renderTable(); // Only refresh if not hiding learned
+        }
+      }
+    });
+    playWord.addEventListener('mouseleave', function() {
+      const audio = document.getElementById(this.dataset.audio);
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+    // Checkbox localStorage logic
+    const yesBox = row.querySelector('.practice-checkbox-yes');
+    const noBox = row.querySelector('.practice-checkbox-no');
+
+    // Restore state
+    if (saved === 'yes') {
+      yesBox.checked = true;
+      noBox.checked = false;
+    } else if (saved === 'no') {
+      yesBox.checked = false;
+      noBox.checked = true;
+    } else {
+      yesBox.checked = false;
+      noBox.checked = false;
+    }
+
+    // When user checks yes/no, update localStorage and uncheck the other
+    yesBox.addEventListener('change', function() {
+      if (yesBox.checked) {
+        noBox.checked = false;
+        localStorage.setItem(storageKey, 'yes');
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+      if (!hideLearned) {
+        renderTable(); // Only refresh if not hiding learned
+      }
+    });
+    noBox.addEventListener('change', function() {
+      if (noBox.checked) {
+        yesBox.checked = false;
+        localStorage.setItem(storageKey, 'no');
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+      if (!hideLearned) {
+        renderTable(); // Only refresh if not hiding learned
+      }
+    });
+    tbody.appendChild(row);
+    visibleCount++;
+  }
+}
+
+renderTable();
+
+document.getElementById('reset-checkboxes').addEventListener('click', function() {
+  if (confirm('Are you sure you want to reset all "Need Practice" checkboxes for this level?')) {
+    document.querySelectorAll('.practice-checkbox-yes, .practice-checkbox-no').forEach(checkbox => {
+      checkbox.checked = false;
+      localStorage.removeItem("c1_practice_" + encodeURIComponent(checkbox.dataset.word));
+    });
+    renderTable();
+  }
+});
+
+document.getElementById('toggle-hide-learned').addEventListener('click', function() {
+  hideLearned = !hideLearned;
+  this.textContent = hideLearned ? "Show all words" : "Hide words learned";
+  renderTable();
+});
+
+document.getElementById('toggle-auto-no').addEventListener('click', function() {
+  autoNoOnPlay = !autoNoOnPlay;
+  this.textContent = "Auto-check No on play: " + (autoNoOnPlay ? "ON" : "OFF");
+});
+  </script>
+</body>
+</html>
